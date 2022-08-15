@@ -7,6 +7,17 @@ const express = require('express');
 //instantiates the server
 const app = express();
 
+
+
+function findById(id, animalsArray){
+    const result = animalsArray.filter(animal => animal.id === id)[0];
+    return result;
+}
+
+
+
+
+
 // callback function will run everytime that route is accessed from that route with get request && res.send sends string to client
 app.get('/api/animals/', (req, res) => {
     let results = animals;
@@ -18,6 +29,22 @@ app.get('/api/animals/', (req, res) => {
 
     res.json(results);
   });
+
+
+//get to demonstrate params
+
+app.get('/api/animals/:id', (req,res) => {
+    const result = findById(req.params.id, animals);
+    
+    if (result){
+       res.json(result); 
+    } else {
+        res.send(404);
+    }
+    
+
+});
+
 
 
 //make the server listen
