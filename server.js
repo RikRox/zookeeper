@@ -8,7 +8,7 @@ const express = require('express');
 const app = express();
 
 // callback function will run everytime that route is accessed from that route with get request && res.send sends string to client
-app.get('/', (req, res) => {
+app.get('/api/animals/', (req, res) => {
     let results = animals;
     console.log(req.query);
 
